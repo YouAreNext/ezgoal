@@ -1,0 +1,5 @@
+query material_type {
+  material_type {
+    title
+  }
+}

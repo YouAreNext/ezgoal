@@ -1,0 +1,16 @@
+query materials($limit: Int = 17 $offset: Int = 0 $created_at: order_by = desc) {
+  materials(limit: $limit, offset: $offset, order_by: {created_at: $created_at}) {
+    image
+    title
+    type
+    id
+    description
+    url
+  }
+
+  paginatorInfo: materials_aggregate{
+    aggregate {
+      count
+    }
+  }
+}

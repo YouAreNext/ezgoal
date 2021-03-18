@@ -1,10 +1,33 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
-  <router-view />
+  <component :is="layout">
+    <router-view />
+  </component>
 </template>
+
+<script>
+import { computed, defineComponent } from "vue";
+import { useRoute } from "vue-router";
+import { useQuery, useResult } from "@vue/apollo-composable";
+
+import ME_QUERY from "@/graphql/me.graphql";
+
+const defaultLayout = "default";
+
+export default defineComponent({
+  setup() {
+    const { result } = useQuery(ME_QUERY);
+    const me = useResult(result, null, data => data.me);
+
+    const route = useRoute();
+
+    const layout = computed(() => {
+      return (route.meta.layout || defaultLayout) + "-layout";
+    });
+
+    return { layout };
+  }
+});
+</script>
 
 <style lang="scss">
 #app {

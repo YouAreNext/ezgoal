@@ -1,11 +1,36 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import Home from "../views/Home.vue";
+import Index from "../pages/index.vue";
+import Login from "../pages/login.vue";
+import Register from "../pages/register.vue";
 
-const routes: Array<RouteRecordRaw> = [
+const authGuard = (to: any, from: any, next: any) => {
+  const token = localStorage.getItem("AUTH_TOKEN");
+
+  if (token || token != null) {
+    next();
+  } else {
+    next("/login");
+  }
+};
+
+const routes = [
   {
     path: "/",
-    name: "Home",
-    component: Home
+    name: "Index",
+    component: Index,
+    beforeEnter: authGuard
+  },
+  {
+    path: "/login",
+    name: "Login",
+    meta: { unauth: true, layout: "auth" },
+    component: Login
+  },
+  {
+    path: "/register",
+    name: "Register",
+    meta: { unauth: true, layout: "auth" },
+    component: Register
   },
   {
     path: "/about",

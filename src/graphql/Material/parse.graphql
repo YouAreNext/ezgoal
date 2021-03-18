@@ -1,0 +1,8 @@
+mutation MyMutation($url: String!) {
+  parse_material(url: $url) {
+    image
+    title
+    description
+    images
+  }
+}

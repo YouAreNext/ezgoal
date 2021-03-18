@@ -1,0 +1,10 @@
+mutation createMaterial($object: materials_insert_input!) {
+  createMaterial: insert_materials_one(object: $object) {
+    image
+    title
+    type
+    id
+    description
+    url
+  }
+}

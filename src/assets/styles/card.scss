@@ -1,0 +1,24 @@
+.el-card {
+  margin-right: 1rem;
+  .image {
+    max-width: 100%;
+  }
+}
+
+.card-append__material {
+  .el-card__main {
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 42px;
+  }
+  .bottom {
+    height: 50px;
+    line-height: 50px;
+  }
+}
+
+.item-card-masonry {
+  margin-bottom: 30px;
+}
